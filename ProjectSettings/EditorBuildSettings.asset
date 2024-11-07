@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/FLOG.unity
+    guid: fbd0eaa34a3c01b40b44cc9b08245769
+  - enabled: 1
+    path: Assets/Scenes/FLOG 2.unity
+    guid: 7515c2d48f3f62749b831b99e6680395
+  m_configObjects: {}
