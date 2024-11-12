@@ -6,39 +6,32 @@ using UnityEngine.UI;
 
 public class HealthPlayer : MonoBehaviour
 {
+    public delegate void UpdateLiveDelegate(float newValue);
+
+    public UpdateLiveDelegate takeDamager;
+    public UpdateLiveDelegate takeHealth;
+
+
     [SerializeField] TimerController timer;
     [SerializeField] float health;
-    [SerializeField] Slider Slider;
-    float MaxHealth;
+    public float MaxHealth;
     [SerializeField] GameObject panelRestart;
     // Start is called before the first frame update
     void Start()
     {
         MaxHealth = health;
-        Slider.maxValue = MaxHealth;
-        Slider.minValue = 0;
         timer.OnTimeFinished += death;
-    }
-    private void Update()
-    {
-        Slider.value = health;
     }
     public void death()
     {
         gameObject.SetActive(false);
-        Slider.gameObject.SetActive(false);
         panelRestart.SetActive(true);
     }
     public void TakeDamage(float damage)
     {
         health -= damage;
-
-        if (health <= 0)
-        {
-            gameObject.SetActive(false);
-            Slider.gameObject.SetActive(false);
-            panelRestart.SetActive(true);
-        }
+        
+        takeDamager?.Invoke(health);
     }
     public void  TakeHealth(float heal)
     {
@@ -48,5 +41,6 @@ public class HealthPlayer : MonoBehaviour
         {
             health = MaxHealth;
         }
+        takeHealth?.Invoke(health);
     }
 }

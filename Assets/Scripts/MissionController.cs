@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class MissionController : MonoBehaviour
 {
+
     [SerializeField] TextMeshProUGUI MissionText1;
-    int itemsCount;
     [SerializeField] int maxItemsCount;
     bool missionComplete1 = false;
 
     [SerializeField] TextMeshProUGUI MissionText2;
     [SerializeField] PlayerMovement player;
+
+    [SerializeField] ColletionsController Colletion;
+
     int jumpsCount;
     [SerializeField] int maxJumpsCount;
     bool missionComplete2 = false;
@@ -21,30 +24,22 @@ public class MissionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Colletion.ColletorCounter += mission_1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        mission_1();
         mission_2();
         sistemOfMissions();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void mission_1(int itemValue)
     {
-        if (collision.gameObject.tag == "Collection")
-        {            
-                itemsCount++;     
-        }                 
-    }
-    public void mission_1()
-    {
-        MissionText1.text = itemsCount.ToString();
-        if (itemsCount >= maxItemsCount)
+        MissionText1.text = itemValue.ToString();
+        if (itemValue >= maxItemsCount)
         {
             missionComplete1 = true;
-            itemsCount = maxItemsCount;
+            itemValue = maxItemsCount;
         }
     }
     public void mission_2()

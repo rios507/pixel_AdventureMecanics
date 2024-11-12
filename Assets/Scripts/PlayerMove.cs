@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
 	Rigidbody2D rigid;
 	Animator anim;
 	SpriteRenderer sprt;
@@ -130,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			transform.parent = collision.transform;
 		}
-	}
+    }
 	private void OnCollisionExit2D(Collision2D collision)
 	{
 		if (collision.gameObject.tag == "PlataformMove")
